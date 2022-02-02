@@ -52,5 +52,44 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('daisyui')],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          /* your theme name */ primary: '#a50428' /* Primary color */,
+          'primary-focus': '#700119' /* Primary color - focused */,
+          'primary-content':
+            '#ffffff' /* Foreground content color to use on primary color */,
+
+          secondary: '#fec323' /* Secondary color */,
+          'secondary-focus': '#b88a0b' /* Secondary color - focused */,
+          'secondary-content':
+            '#ffffff' /* Foreground content color to use on secondary color */,
+
+          accent: '#005f21' /* Accent color */,
+          'accent-focus': '#004f1c' /* Accent color - focused */,
+          'accent-content':
+            '#ffffff' /* Foreground content color to use on accent color */,
+
+          neutral: '#ffffff' /* Neutral color */,
+          'neutral-focus': '#ffffff' /* Neutral color - focused */,
+          'neutral-content':
+            '#ffffff' /* Foreground content color to use on neutral color */,
+
+          'base-100':
+            '#000000' /* Base color of page, used for blank backgrounds */,
+          'base-200': '#000000' /* Base color, a little darker */,
+          'base-300': '#000000' /* Base color, even more darker */,
+          'base-content':
+            '#ffffff' /* Foreground content color to use on base color */,
+
+          info: '#2094f3' /* Info */,
+          success: '#009485' /* Success */,
+          warning: '#ff9900' /* Warning */,
+          error: '#ff5724' /* Error */,
+        },
+      },
+    ],
+  },
 };
