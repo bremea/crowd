@@ -20,12 +20,17 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.7.2",
+    "@types/styled-components": "^5.1.21",
+    "axios": "^0.25.0",
     "clsx": "^1.1.1",
     "daisyui": "^1.25.4",
     "next": "^12.0.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-redux": "^7.2.6",
+    "styled-components": "^5.3.3",
     "tailwind-merge": "^1.2.0"
   },
   "devDependencies": {
@@ -40,7 +45,6 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "autoprefixer": "^10.4.2",
-    "babel-jest": "^27.4.6",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.4",
     "eslint-config-prettier": "^8.3.0",
