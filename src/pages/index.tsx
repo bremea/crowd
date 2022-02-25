@@ -16,6 +16,7 @@ export default function HomePage() {
               <Image src={Logo} alt='logo' />
             </div>
             <h1 className='mt-4'>CHC Crowd</h1>
+            <p>coming soon!</p>
             <footer className='absolute bottom-2 text-gray-700'>
               © {new Date().getFullYear()} Brett Meadows
             </footer>
