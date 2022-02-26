@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import Logo from 'public/images/logo.png';
 import * as React from 'react';
 
 import Layout from '@/components/layout/Layout';
@@ -12,10 +10,7 @@ export default function HomePage() {
       <main>
         <section>
           <div className='layout flex min-h-screen w-96 flex-col items-center justify-center text-center'>
-            <div className='w-64'>
-              <Image src={Logo} alt='logo' />
-            </div>
-            <h1 className='mt-4'>CHC Crowd</h1>
+            <h1 className='mt-4 text-primary'>Crowd</h1>
             <p>coming soon!</p>
             <footer className='absolute bottom-2 text-gray-700'>
               © {new Date().getFullYear()} Brett Meadows
