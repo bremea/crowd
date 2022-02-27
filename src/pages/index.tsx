@@ -41,9 +41,16 @@ export default class HomePage extends React.Component<
     const study = await (await fetch('/api/level/study')).json();
     const cyber = await (await fetch('/api/level/cyber')).json();
     const music = await (await fetch('/api/level/music')).json();
+    const gym = await (await fetch('/api/level/gym')).json();
     this.setState({
       loading: false,
-      data: { library: library, study: study, cyber: cyber, music: music },
+      data: {
+        library: library,
+        study: study,
+        cyber: cyber,
+        music: music,
+        gym: gym,
+      },
     });
   }
 

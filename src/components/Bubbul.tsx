@@ -121,19 +121,38 @@ export default class Bubbul extends React.Component<
           </div>
           <div className='divider'></div>
           <div className='flex flex-col items-center justify-between md:flex-row'>
-            <div className='flex items-center'>
-              <div className='flex h-10 w-10 items-center justify-center rounded-full bg-info bg-opacity-20'>
-                <Icons.Clock className='text-info' />
+            <div className='flex flex-col'>
+              <div className='flex items-center'>
+                <div className='flex h-10 w-10 items-center justify-center rounded-full bg-info bg-opacity-20'>
+                  <Icons.Users className='text-info' />
+                </div>
+                <p className='ml-2'>
+                  The busiest hour here is{' '}
+                  <span className='text-info'>
+                    {(this.props.data?.maxHour as number) > 12
+                      ? (this.props.data?.maxHour as number) - 12
+                      : (this.props.data?.maxHour as number)}
+                    {(this.props.data?.maxHour as number) > 12 ? 'pm' : 'am'}
+                  </span>
+                </p>
               </div>
-              <p className='ml-2'>
-                The busiest hour here is{' '}
-                <span className='text-info'>
-                  {(this.props.data?.maxHour as number) > 12
-                    ? (this.props.data?.maxHour as number) - 12
-                    : (this.props.data?.maxHour as number)}
-                  {(this.props.data?.maxHour as number) > 12 ? 'pm' : 'am'}
-                </span>
-              </p>
+              <div className='mt-4 flex items-center'>
+                <div className='flex h-10 w-10 items-center justify-center rounded-full bg-success bg-opacity-20'>
+                  <Icons.Clock className='text-success' />
+                </div>
+                <p className='ml-2'>
+                  Open from{' '}
+                  <span className='text-success'>
+                    {this.props.data?.hours[0]}
+                    {(this.props.data?.hours[0] as number) > 12 ? 'pm' : 'am'}
+                  </span>{' '}
+                  to{' '}
+                  <span className='text-success'>
+                    {this.props.data?.hours[1]}
+                    {(this.props.data?.hours[1] as number) > 12 ? 'pm' : 'am'}
+                  </span>
+                </p>
+              </div>
             </div>
             <div className='mt-4 flex w-full flex-col md:mt-0 md:w-1/3'>
               <div className='flex items-center'>

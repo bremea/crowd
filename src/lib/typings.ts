@@ -6,4 +6,5 @@ export interface udata {
   percent: number;
   name: string;
   id: string;
+  hours: [number, number];
 }

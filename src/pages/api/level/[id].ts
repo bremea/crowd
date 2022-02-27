@@ -48,6 +48,7 @@ export default async function packet(
     hourly: maxesHour,
     id: req.query.id,
     name: (names as { [key: string]: string })[req.query.id as string],
+    hours: (hours as { [key: string]: Array<number> })[req.query.id as string],
   });
 }
 
@@ -56,4 +57,13 @@ const names = {
   study: 'Study Hall',
   cyber: 'Cyber Center',
   music: 'Music Room',
+  gym: 'Main Gym',
+};
+
+const hours = {
+  library: [7, 11],
+  study: [9, 5],
+  cyber: [9, 5],
+  music: [7, 9],
+  gym: [6, 9],
 };
