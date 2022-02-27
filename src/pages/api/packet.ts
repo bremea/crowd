@@ -2,6 +2,12 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default function hello(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json({ name: 'Bambang' });
+import { db } from '@/lib/database/Database/Database';
+
+export default async function hello(req: NextApiRequest, res: NextApiResponse) {
+  res
+    .status(200)
+    .json(
+      await db.locations.get(req.headers.authorization as string, ['data'])
+    );
 }
