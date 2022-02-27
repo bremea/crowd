@@ -79,6 +79,7 @@ export default function Seo(props: SeoProps) {
         content='/favicon/ms-icon-144x144.png'
       />
       <meta name='theme-color' content='#ffffff' />
+      <link rel='icon' type='image/png' href='/favicon.png' />
     </Head>
   );
 }
