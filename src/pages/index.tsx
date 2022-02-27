@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Icons from 'react-feather';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -8,8 +9,8 @@ export default class HomePage extends React.Component<
   {
     loading: boolean;
     data: {
-      library: { current: number; max: number; percent: number };
-      study: { current: number; max: number; percent: number };
+      library: udata;
+      study: udata;
     } | null;
   }
 > {
@@ -51,61 +52,105 @@ export default class HomePage extends React.Component<
               <div className='layout flex min-h-screen w-full flex-col items-center justify-center text-center'>
                 <h1 className='mt-4 text-primary'>Crowd</h1>
                 <p>
-                  Check real-time crowd levels with Crowd. Know before you go.
+                  Check real-time crowd levels on campus with Crowd. Know before
+                  you go.
                 </p>
 
-                <div className='mt-12 flex w-full items-center justify-between rounded-full p-8 shadow-xl'>
-                  <div className='flex flex-col items-start'>
-                    <p className='font-bold'>Campus Library</p>
-                    <p
-                      className={
+                <div className='mt-12 w-full rounded-2xl p-8 shadow-xl'>
+                  <div className='flex w-full items-center justify-between'>
+                    <div className='flex flex-col items-start'>
+                      <p className='font-bold'>Campus Library</p>
+                      <p
+                        className={
+                          getPPData(this.state.data?.library.percent as number)
+                            .color
+                        }
+                      >
+                        {
+                          getPPData(this.state.data?.library.percent as number)
+                            .text
+                        }
+                      </p>
+                    </div>
+                    <div
+                      className={`radial-progress ${
                         getPPData(this.state.data?.library.percent as number)
                           .color
+                      }`}
+                      style={
+                        {
+                          '--value': this.state.data?.library.percent,
+                        } as React.CSSProperties
                       }
                     >
-                      {
-                        getPPData(this.state.data?.library.percent as number)
-                          .text
-                      }
-                    </p>
+                      {this.state.data?.library.percent}%
+                    </div>
                   </div>
-                  <div
-                    className={`radial-progress ${
-                      getPPData(this.state.data?.library.percent as number)
-                        .color
-                    }`}
-                    style={
-                      {
-                        '--value': this.state.data?.library.percent,
-                      } as React.CSSProperties
-                    }
-                  >
-                    {this.state.data?.library.percent}%
+                  <div className='divider'></div>
+                  <div className='flex items-center'>
+                    <div className='flex h-10 w-10 items-center justify-center rounded-full bg-info bg-opacity-20'>
+                      <Icons.Clock className='text-info' />
+                    </div>
+                    <p className='ml-2'>
+                      The busiest hour here is{' '}
+                      <span className='text-info'>
+                        {(this.state.data?.library.maxHour as number) > 12
+                          ? (this.state.data?.library.maxHour as number) - 12
+                          : (this.state.data?.library.maxHour as number)}
+                        {(this.state.data?.library.maxHour as number) > 12
+                          ? 'pm'
+                          : 'am'}
+                      </span>
+                    </p>
                   </div>
                 </div>
-                <div className='mt-12 flex w-full items-center justify-between rounded-full p-8 shadow-xl'>
-                  <div className='flex flex-col items-start'>
-                    <p className='font-bold'>Study Hall</p>
-                    <p
-                      className={
+
+                <div className='mt-12 w-full rounded-2xl p-8 shadow-xl'>
+                  <div className='flex w-full items-center justify-between'>
+                    <div className='flex flex-col items-start'>
+                      <p className='font-bold'>Study Hall</p>
+                      <p
+                        className={
+                          getPPData(this.state.data?.study.percent as number)
+                            .color
+                        }
+                      >
+                        {
+                          getPPData(this.state.data?.study.percent as number)
+                            .text
+                        }
+                      </p>
+                    </div>
+                    <div
+                      className={`radial-progress ${
                         getPPData(this.state.data?.study.percent as number)
                           .color
+                      }`}
+                      style={
+                        {
+                          '--value': this.state.data?.study.percent,
+                        } as React.CSSProperties
                       }
                     >
-                      {getPPData(this.state.data?.study.percent as number).text}
-                    </p>
+                      {this.state.data?.study.percent}%
+                    </div>
                   </div>
-                  <div
-                    className={`radial-progress ${
-                      getPPData(this.state.data?.study.percent as number).color
-                    }`}
-                    style={
-                      {
-                        '--value': this.state.data?.study.percent,
-                      } as React.CSSProperties
-                    }
-                  >
-                    {this.state.data?.study.percent}%
+                  <div className='divider'></div>
+                  <div className='flex items-center'>
+                    <div className='flex h-10 w-10 items-center justify-center rounded-full bg-info bg-opacity-20'>
+                      <Icons.Clock className='text-info' />
+                    </div>
+                    <p className='ml-2'>
+                      The busiest hour here is{' '}
+                      <span className='text-info'>
+                        {(this.state.data?.study.maxHour as number) > 12
+                          ? (this.state.data?.study.maxHour as number) - 12
+                          : (this.state.data?.study.maxHour as number)}
+                        {(this.state.data?.study.maxHour as number) > 12
+                          ? 'pm'
+                          : 'am'}
+                      </span>
+                    </p>
                   </div>
                 </div>
 
@@ -128,4 +173,11 @@ function getPPData(percent: number) {
   else if (percent >= 33)
     return { color: 'text-warning', text: 'Somewhat Busy' };
   else return { color: 'text-success', text: 'Not Very Busy' };
+}
+
+interface udata {
+  current: number;
+  max: number;
+  maxHour: number;
+  percent: number;
 }

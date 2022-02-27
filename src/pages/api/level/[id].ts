@@ -20,6 +20,16 @@ export default async function packet(
     const chunk = rrd.slice(i, i + 1440);
     dayMaxes.push(chunk);
   }
+  const hourMaxes = [];
+  for (let i = 0; i < rrd.length; i += 60) {
+    const chunk = rrd.slice(i, i + 60);
+    hourMaxes.push(chunk);
+  }
+  const maxesHour: number[] = [];
+  for (const o of hourMaxes) {
+    maxesHour.push(Math.max(...o));
+  }
+  const maxHour = maxesHour.indexOf(Math.max(...maxesHour)) + 1;
   const maxes: number[] = [];
   for (const o of dayMaxes) {
     maxes.push(Math.max(...o));
@@ -31,5 +41,6 @@ export default async function packet(
     current: rrd[rrd.length - 1],
     max: averageMax,
     percent: Math.floor((rrd[rrd.length - 1] / averageMax) * 100),
+    maxHour: maxHour,
   });
 }
