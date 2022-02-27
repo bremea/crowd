@@ -4,4 +4,5 @@ export interface udata {
   maxHour: number;
   hourly: Array<number>;
   percent: number;
+  name: string;
 }

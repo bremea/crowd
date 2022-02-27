@@ -9,7 +9,7 @@ export default class Bubbul extends React.Component<{ data: udata }, unknown> {
       <div className='mt-12 w-full rounded-2xl bg-base-100 p-8  shadow-xl'>
         <div className='flex w-full items-center justify-between'>
           <div className='flex flex-col items-start'>
-            <p className='font-bold'>Campus Library</p>
+            <p className='font-bold'>{this.props.data.name}</p>
             <p className={getPPData(this.props.data?.percent as number).color}>
               {getPPData(this.props.data?.percent as number).text}
             </p>
