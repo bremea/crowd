@@ -42,5 +42,6 @@ export default async function packet(
     max: averageMax,
     percent: Math.floor((rrd[rrd.length - 1] / averageMax) * 100),
     maxHour: maxHour,
+    hourly: maxesHour,
   });
 }

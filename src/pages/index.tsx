@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as Icons from 'react-feather';
 
+import Bubbul from '@/components/Bubbul';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 
@@ -37,7 +37,7 @@ export default class HomePage extends React.Component<
   }
 
   render() {
-    if (this.state.loading) {
+    if (this.state.loading || !this.state.data) {
       return (
         <Layout>
           <Seo />
@@ -63,202 +63,12 @@ export default class HomePage extends React.Component<
                   you go.
                 </p>
 
-                <div className='mt-12 w-full rounded-2xl bg-base-100 p-8  shadow-xl'>
-                  <div className='flex w-full items-center justify-between'>
-                    <div className='flex flex-col items-start'>
-                      <p className='font-bold'>Campus Library</p>
-                      <p
-                        className={
-                          getPPData(this.state.data?.library.percent as number)
-                            .color
-                        }
-                      >
-                        {
-                          getPPData(this.state.data?.library.percent as number)
-                            .text
-                        }
-                      </p>
-                    </div>
-                    <div
-                      className={`radial-progress ${
-                        getPPData(this.state.data?.library.percent as number)
-                          .color
-                      }`}
-                      style={
-                        {
-                          '--value': this.state.data?.library.percent,
-                        } as React.CSSProperties
-                      }
-                    >
-                      {this.state.data?.library.percent}%
-                    </div>
-                  </div>
-                  <div className='divider'></div>
-                  <div className='flex items-center'>
-                    <div className='flex h-10 w-10 items-center justify-center rounded-full bg-info bg-opacity-20'>
-                      <Icons.Clock className='text-info' />
-                    </div>
-                    <p className='ml-2'>
-                      The busiest hour here is{' '}
-                      <span className='text-info'>
-                        {(this.state.data?.library.maxHour as number) > 12
-                          ? (this.state.data?.library.maxHour as number) - 12
-                          : (this.state.data?.library.maxHour as number)}
-                        {(this.state.data?.library.maxHour as number) > 12
-                          ? 'pm'
-                          : 'am'}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-
-                <div className='mt-12 w-full rounded-2xl bg-base-100 p-8  shadow-xl'>
-                  <div className='flex w-full items-center justify-between'>
-                    <div className='flex flex-col items-start'>
-                      <p className='font-bold'>Study Hall</p>
-                      <p
-                        className={
-                          getPPData(this.state.data?.study.percent as number)
-                            .color
-                        }
-                      >
-                        {
-                          getPPData(this.state.data?.study.percent as number)
-                            .text
-                        }
-                      </p>
-                    </div>
-                    <div
-                      className={`radial-progress ${
-                        getPPData(this.state.data?.study.percent as number)
-                          .color
-                      }`}
-                      style={
-                        {
-                          '--value': this.state.data?.study.percent,
-                        } as React.CSSProperties
-                      }
-                    >
-                      {this.state.data?.study.percent}%
-                    </div>
-                  </div>
-                  <div className='divider'></div>
-                  <div className='flex items-center'>
-                    <div className='flex h-10 w-10 items-center justify-center rounded-full bg-info bg-opacity-20'>
-                      <Icons.Clock className='text-info' />
-                    </div>
-                    <p className='ml-2'>
-                      The busiest hour here is{' '}
-                      <span className='text-info'>
-                        {(this.state.data?.study.maxHour as number) > 12
-                          ? (this.state.data?.study.maxHour as number) - 12
-                          : (this.state.data?.study.maxHour as number)}
-                        {(this.state.data?.study.maxHour as number) > 12
-                          ? 'pm'
-                          : 'am'}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-
-                <div className='mt-12 w-full rounded-2xl bg-base-100 p-8  shadow-xl'>
-                  <div className='flex w-full items-center justify-between'>
-                    <div className='flex flex-col items-start'>
-                      <p className='font-bold'>Cyber Center</p>
-                      <p
-                        className={
-                          getPPData(this.state.data?.cyber.percent as number)
-                            .color
-                        }
-                      >
-                        {
-                          getPPData(this.state.data?.cyber.percent as number)
-                            .text
-                        }
-                      </p>
-                    </div>
-                    <div
-                      className={`radial-progress ${
-                        getPPData(this.state.data?.cyber.percent as number)
-                          .color
-                      }`}
-                      style={
-                        {
-                          '--value': this.state.data?.cyber.percent,
-                        } as React.CSSProperties
-                      }
-                    >
-                      {this.state.data?.cyber.percent}%
-                    </div>
-                  </div>
-                  <div className='divider'></div>
-                  <div className='flex items-center'>
-                    <div className='flex h-10 w-10 items-center justify-center rounded-full bg-info bg-opacity-20'>
-                      <Icons.Clock className='text-info' />
-                    </div>
-                    <p className='ml-2'>
-                      The busiest hour here is{' '}
-                      <span className='text-info'>
-                        {(this.state.data?.cyber.maxHour as number) > 12
-                          ? (this.state.data?.cyber.maxHour as number) - 12
-                          : (this.state.data?.cyber.maxHour as number)}
-                        {(this.state.data?.cyber.maxHour as number) > 12
-                          ? 'pm'
-                          : 'am'}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-
-                <div className='mt-12 w-full rounded-2xl bg-base-100 p-8  shadow-xl'>
-                  <div className='flex w-full items-center justify-between'>
-                    <div className='flex flex-col items-start'>
-                      <p className='font-bold'>Hallman Music Center</p>
-                      <p
-                        className={
-                          getPPData(this.state.data?.music.percent as number)
-                            .color
-                        }
-                      >
-                        {
-                          getPPData(this.state.data?.music.percent as number)
-                            .text
-                        }
-                      </p>
-                    </div>
-                    <div
-                      className={`radial-progress ${
-                        getPPData(this.state.data?.music.percent as number)
-                          .color
-                      }`}
-                      style={
-                        {
-                          '--value': this.state.data?.music.percent,
-                        } as React.CSSProperties
-                      }
-                    >
-                      {this.state.data?.music.percent}%
-                    </div>
-                  </div>
-                  <div className='divider'></div>
-                  <div className='flex items-center'>
-                    <div className='flex h-10 w-10 items-center justify-center rounded-full bg-info bg-opacity-20'>
-                      <Icons.Clock className='text-info' />
-                    </div>
-                    <p className='ml-2'>
-                      The busiest hour here is{' '}
-                      <span className='text-info'>
-                        {(this.state.data?.music.maxHour as number) > 12
-                          ? (this.state.data?.music.maxHour as number) - 12
-                          : (this.state.data?.music.maxHour as number)}
-                        {(this.state.data?.music.maxHour as number) > 12
-                          ? 'pm'
-                          : 'am'}
-                      </span>
-                    </p>
-                  </div>
-                </div>
+                <Bubbul data={this.state.data?.library} />
+                <Bubbul data={this.state.data?.study} />
+                <Bubbul data={this.state.data?.cyber} />
+                <Bubbul data={this.state.data?.music} />
               </div>
+
               <footer className='mt-24 pb-2 text-center text-sm text-gray-700'>
                 © {new Date().getFullYear()} Brett Meadows
                 <br />
@@ -272,16 +82,10 @@ export default class HomePage extends React.Component<
   }
 }
 
-function getPPData(percent: number) {
-  if (percent >= 66) return { color: 'text-error', text: 'Very Busy' };
-  else if (percent >= 33)
-    return { color: 'text-warning', text: 'Somewhat Busy' };
-  else return { color: 'text-success', text: 'Not Very Busy' };
-}
-
 interface udata {
   current: number;
   max: number;
   maxHour: number;
+  hourly: Array<number>;
   percent: number;
 }
