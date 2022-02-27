@@ -157,7 +157,7 @@ export default class HomePage extends React.Component<
                 <footer className='absolute bottom-2 text-sm text-gray-700'>
                   © {new Date().getFullYear()} Brett Meadows
                   <br />
-                  Made for Buildergroop Hackathon #1
+                  Made for Buildergroop Hackathon Season 1
                 </footer>
               </div>
             </section>
