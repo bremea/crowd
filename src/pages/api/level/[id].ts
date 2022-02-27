@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import _ from 'lodash';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { db } from '@/lib/database/Database/Database';
@@ -14,38 +15,37 @@ export default async function packet(
     res.status(403).send({ error: false, msg: 'id doesn\t exist' });
     return;
   }
-  const cHour = new Date().getHours();
+
   const rrd = JSON.parse(rrf.data);
-  const dayMaxes = [];
-  for (let i = 0; i < rrd.length; i += 1440) {
-    const chunk = rrd.slice(i, i + 1440);
-    dayMaxes.push(chunk);
+  const dSec = new Date().getMinutes();
+
+  let yesterday = rrd.slice(
+    rrd.length - 1 - dSec - 1440,
+    rrd.length - 1 - dSec
+  );
+  yesterday = _.chunk(yesterday, 60);
+  const maxesHour = [];
+  const averageHour = [];
+  for (const i of yesterday) {
+    maxesHour.push(Math.max(...i));
+    averageHour.push(_.mean(i));
   }
-  let hourMaxes = [];
-  for (let i = 2880 + cHour * 60; i > 1440 + cHour * 60; i -= 60) {
-    const chunk = rrd.slice(i - 60, i);
-    hourMaxes.push(chunk);
+
+  const maxesBefore: Array<Array<number>> = _.chunk(rrd, 1440);
+  const maxesEveryDay = [];
+  for (const max of maxesBefore) {
+    maxesEveryDay.push(Math.max(...max));
   }
-  hourMaxes = hourMaxes.filter((e) => e.length > 0);
-  const maxesHour: number[] = [];
-  for (const o of hourMaxes) {
-    maxesHour.push(Math.max(...o));
-  }
-  const maxHour = maxesHour.indexOf(Math.max(...maxesHour)) + 1;
-  const maxes: number[] = [];
-  for (const o of dayMaxes) {
-    maxes.push(Math.max(...o));
-  }
-  const averageMax = Math.round(maxes.reduce((a, b) => a + b) / maxes.length);
+  const averageMax = _.mean(maxesEveryDay);
 
   res.status(200).send({
     error: false,
     msg: 'success',
     current: rrd[rrd.length - 1],
-    max: averageMax,
+    max: _.mean(maxesHour),
     percent: Math.floor((rrd[rrd.length - 1] / averageMax) * 100),
-    maxHour: maxHour,
-    hourly: maxesHour,
+    maxHour: maxesHour.indexOf(Math.max(...maxesHour)),
+    hourly: averageHour,
     id: req.query.id,
     name: (names as { [key: string]: string })[req.query.id as string],
     hours: (hours as { [key: string]: Array<number> })[req.query.id as string],
