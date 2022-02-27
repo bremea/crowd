@@ -3,10 +3,7 @@ import twilio from 'twilio';
 
 import { db } from '@/lib/database/Database/Database';
 
-export default async function packet(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function phone(req: NextApiRequest, res: NextApiResponse) {
   if (!req.body.phoneNum || !validate(req.body.phoneNum)) {
     res.status(403).send({ error: true, msg: 'phone number is invalid' });
     return;

@@ -26,6 +26,12 @@ export class PhoneManager {
     );
   }
 
+  public async delete(number: string): Promise<void> {
+    return await this._db.query<void>('DELETE FROM phone WHERE number=?', [
+      number,
+    ]);
+  }
+
   /** @argument columns - Has to be passed in as `as const` */
   public async update<T extends readonly (keyof PhoneDB)[]>(
     number: string,
