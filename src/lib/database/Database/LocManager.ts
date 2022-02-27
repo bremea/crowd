@@ -19,22 +19,6 @@ export class LocManager {
     );
   }
 
-  public async getFromBot<T extends keyof LocationDB>(
-    id: string,
-    columns: T[]
-  ): Promise<Query<SelectFrom<LocationDB, T>, 1>> {
-    return await this._db.query<Query<SelectFrom<LocationDB, T>, 1>>(
-      `SELECT ${columns.join(', ')} FROM locations WHERE id=? LIMIT 1`,
-      [id]
-    );
-  }
-
-  public async deleteFromBot(id: string): Promise<void> {
-    return await this._db.query<void>(`DELETE FROM locations WHERE id = ?`, [
-      id,
-    ]);
-  }
-
   public async register(id: string, config: string): Promise<void> {
     return await this._db.query<void>(
       'INSERT INTO locations (id, modul, config) VALUES (?, ?, ?)',
