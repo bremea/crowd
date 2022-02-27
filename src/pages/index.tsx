@@ -11,6 +11,8 @@ export default class HomePage extends React.Component<
     data: {
       library: udata;
       study: udata;
+      cyber: udata;
+      music: udata;
     } | null;
   }
 > {
@@ -26,7 +28,12 @@ export default class HomePage extends React.Component<
   async componentDidMount() {
     const library = await (await fetch('/api/level/library')).json();
     const study = await (await fetch('/api/level/study')).json();
-    this.setState({ loading: false, data: { library: library, study: study } });
+    const cyber = await (await fetch('/api/level/cyber')).json();
+    const music = await (await fetch('/api/level/music')).json();
+    this.setState({
+      loading: false,
+      data: { library: library, study: study, cyber: cyber, music: music },
+    });
   }
 
   render() {
@@ -154,12 +161,109 @@ export default class HomePage extends React.Component<
                   </div>
                 </div>
 
-                <footer className='absolute bottom-2 text-sm text-gray-700'>
-                  © {new Date().getFullYear()} Brett Meadows
-                  <br />
-                  Made for Buildergroop Hackathon Season 1
-                </footer>
+                <div className='mt-12 w-full rounded-2xl p-8 shadow-xl'>
+                  <div className='flex w-full items-center justify-between'>
+                    <div className='flex flex-col items-start'>
+                      <p className='font-bold'>Cyber Center</p>
+                      <p
+                        className={
+                          getPPData(this.state.data?.cyber.percent as number)
+                            .color
+                        }
+                      >
+                        {
+                          getPPData(this.state.data?.cyber.percent as number)
+                            .text
+                        }
+                      </p>
+                    </div>
+                    <div
+                      className={`radial-progress ${
+                        getPPData(this.state.data?.cyber.percent as number)
+                          .color
+                      }`}
+                      style={
+                        {
+                          '--value': this.state.data?.cyber.percent,
+                        } as React.CSSProperties
+                      }
+                    >
+                      {this.state.data?.cyber.percent}%
+                    </div>
+                  </div>
+                  <div className='divider'></div>
+                  <div className='flex items-center'>
+                    <div className='flex h-10 w-10 items-center justify-center rounded-full bg-info bg-opacity-20'>
+                      <Icons.Clock className='text-info' />
+                    </div>
+                    <p className='ml-2'>
+                      The busiest hour here is{' '}
+                      <span className='text-info'>
+                        {(this.state.data?.cyber.maxHour as number) > 12
+                          ? (this.state.data?.cyber.maxHour as number) - 12
+                          : (this.state.data?.cyber.maxHour as number)}
+                        {(this.state.data?.cyber.maxHour as number) > 12
+                          ? 'pm'
+                          : 'am'}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+
+                <div className='mt-12 w-full rounded-2xl p-8 shadow-xl'>
+                  <div className='flex w-full items-center justify-between'>
+                    <div className='flex flex-col items-start'>
+                      <p className='font-bold'>Hallman Music Center</p>
+                      <p
+                        className={
+                          getPPData(this.state.data?.music.percent as number)
+                            .color
+                        }
+                      >
+                        {
+                          getPPData(this.state.data?.music.percent as number)
+                            .text
+                        }
+                      </p>
+                    </div>
+                    <div
+                      className={`radial-progress ${
+                        getPPData(this.state.data?.music.percent as number)
+                          .color
+                      }`}
+                      style={
+                        {
+                          '--value': this.state.data?.music.percent,
+                        } as React.CSSProperties
+                      }
+                    >
+                      {this.state.data?.music.percent}%
+                    </div>
+                  </div>
+                  <div className='divider'></div>
+                  <div className='flex items-center'>
+                    <div className='flex h-10 w-10 items-center justify-center rounded-full bg-info bg-opacity-20'>
+                      <Icons.Clock className='text-info' />
+                    </div>
+                    <p className='ml-2'>
+                      The busiest hour here is{' '}
+                      <span className='text-info'>
+                        {(this.state.data?.music.maxHour as number) > 12
+                          ? (this.state.data?.music.maxHour as number) - 12
+                          : (this.state.data?.music.maxHour as number)}
+                        {(this.state.data?.music.maxHour as number) > 12
+                          ? 'pm'
+                          : 'am'}
+                      </span>
+                    </p>
+                  </div>
+                </div>
               </div>
+              <footer className='mt-24 mb-2 text-center text-sm text-gray-700'>
+                © {new Date().getFullYear()} Brett Meadows
+                <br />
+                Made for Buildergroop Hackathon Season 1
+              </footer>
             </section>
           </main>
         </Layout>
