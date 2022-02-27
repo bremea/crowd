@@ -3079,6 +3079,11 @@
   dependencies:
     "is-obj" "^2.0.0"
 
+"dotenv@^16.0.0":
+  "integrity" "sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q=="
+  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-16.0.0.tgz"
+  "version" "16.0.0"
+
 "dotgitignore@^2.1.0":
   "integrity" "sha512-sCm11ak2oY6DglEPpCB8TixLjWAxd3kJTs6UIcSasNYxXdFPV+YKlye92c8H4kKFqV5qYMIh7d+cYecEg0dIkA=="
   "resolved" "https://registry.npmjs.org/dotgitignore/-/dotgitignore-2.1.0.tgz"

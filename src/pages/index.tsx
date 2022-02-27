@@ -11,6 +11,7 @@ export default function HomePage() {
         <section className='w-full'>
           <div className='layout flex min-h-screen w-full flex-col items-center justify-center text-center'>
             <h1 className='mt-4 text-primary'>Crowd</h1>
+            <p>Check real-time crowd levels with Crowd. Know before you go.</p>
             <div className='mt-12 flex w-full items-center justify-between rounded-full p-8 shadow-xl'>
               <div className='flex flex-col items-start'>
                 <p className='font-bold'>Dining Hall</p>

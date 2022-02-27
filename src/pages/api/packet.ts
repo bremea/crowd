@@ -11,11 +11,12 @@ export default async function packet(
   ]);
   if (!rr[0]) {
     res.status(403).send({ error: true, msg: 'unauthorized' });
+    return;
   }
 
   const d = JSON.parse(rr[0].data);
   d.push(req.body.unique);
-  if (d.length > 730) d.shift();
+  if (d.length > 43800) d.shift();
   await db.locations.update(
     req.headers.authorization as string,
     ['data'] as const,
