@@ -4,9 +4,10 @@ import { useRouter } from 'next/router';
 import { openGraph } from '@/lib/helper';
 
 const defaultMeta = {
-  title: 'CHC CTF',
-  siteName: 'CHC CTF',
-  description: 'Calvert Hall College High School Capture the Flag Challenge',
+  title: 'Crowd @ Bremea University',
+  siteName: 'Crowd @ Bremea University',
+  description:
+    'Check real-time crowd levels on campus with Crowd. Know before you go.',
   /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
   url: 'https://tsnext-tw.thcl.dev',
   type: 'website',
@@ -72,11 +73,6 @@ export default function Seo(props: SeoProps) {
           />
         </>
       )}
-
-      {/* Favicons */}
-      {favicons.map((linkProps) => (
-        <link key={linkProps.href} {...linkProps} />
-      ))}
       <meta name='msapplication-TileColor' content='#ffffff' />
       <meta
         name='msapplication-TileImage'
@@ -86,87 +82,3 @@ export default function Seo(props: SeoProps) {
     </Head>
   );
 }
-
-type Favicons = {
-  rel: string;
-  href: string;
-  sizes?: string;
-  type?: string;
-};
-
-// !STARTERCONF this is the default favicon, you can generate your own from https://www.favicon-generator.org/ then replace the whole /public/favicon folder
-const favicons: Array<Favicons> = [
-  {
-    rel: 'apple-touch-icon',
-    sizes: '57x57',
-    href: '/favicon/apple-icon-57x57.png',
-  },
-  {
-    rel: 'apple-touch-icon',
-    sizes: '60x60',
-    href: '/favicon/apple-icon-60x60.png',
-  },
-  {
-    rel: 'apple-touch-icon',
-    sizes: '72x72',
-    href: '/favicon/apple-icon-72x72.png',
-  },
-  {
-    rel: 'apple-touch-icon',
-    sizes: '76x76',
-    href: '/favicon/apple-icon-76x76.png',
-  },
-  {
-    rel: 'apple-touch-icon',
-    sizes: '114x114',
-    href: '/favicon/apple-icon-114x114.png',
-  },
-  {
-    rel: 'apple-touch-icon',
-    sizes: '120x120',
-    href: '/favicon/apple-icon-120x120.png',
-  },
-  {
-    rel: 'apple-touch-icon',
-    sizes: '144x144',
-    href: '/favicon/apple-icon-144x144.png',
-  },
-  {
-    rel: 'apple-touch-icon',
-    sizes: '152x152',
-    href: '/favicon/apple-icon-152x152.png',
-  },
-  {
-    rel: 'apple-touch-icon',
-    sizes: '180x180',
-    href: '/favicon/apple-icon-180x180.png',
-  },
-  {
-    rel: 'icon',
-    type: 'image/png',
-    sizes: '192x192',
-    href: '/favicon/android-icon-192x192.png',
-  },
-  {
-    rel: 'icon',
-    type: 'image/png',
-    sizes: '32x32',
-    href: '/favicon/favicon-32x32.png',
-  },
-  {
-    rel: 'icon',
-    type: 'image/png',
-    sizes: '96x96',
-    href: '/favicon/favicon-96x96.png',
-  },
-  {
-    rel: 'icon',
-    type: 'image/png',
-    sizes: '16x16',
-    href: '/favicon/favicon-16x16.png',
-  },
-  {
-    rel: 'manifest',
-    href: '/favicon/manifest.json',
-  },
-];
