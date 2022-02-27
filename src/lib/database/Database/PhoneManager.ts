@@ -21,7 +21,7 @@ export class PhoneManager {
 
   public async register(number: string, notif: string): Promise<void> {
     return await this._db.query<void>(
-      'INSERT INTO SelectFrom (number, notif) VALUES (?, ?)',
+      'INSERT INTO phone (number, notif) VALUES (?, ?)',
       [number, notif]
     );
   }
