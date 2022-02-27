@@ -54,7 +54,7 @@ export default class HomePage extends React.Component<
       return (
         <Layout>
           <Seo />
-          <main className='w-full'>
+          <main className='w-full bg-base-200'>
             <section className='w-full'>
               <div className='layout flex min-h-screen w-full flex-col items-center justify-center text-center'>
                 <h1 className='mt-4 text-primary'>Crowd</h1>
@@ -63,7 +63,7 @@ export default class HomePage extends React.Component<
                   you go.
                 </p>
 
-                <div className='mt-12 w-full rounded-2xl p-8 shadow-xl'>
+                <div className='mt-12 w-full rounded-2xl bg-base-100 p-8  shadow-xl'>
                   <div className='flex w-full items-center justify-between'>
                     <div className='flex flex-col items-start'>
                       <p className='font-bold'>Campus Library</p>
@@ -112,7 +112,7 @@ export default class HomePage extends React.Component<
                   </div>
                 </div>
 
-                <div className='mt-12 w-full rounded-2xl p-8 shadow-xl'>
+                <div className='mt-12 w-full rounded-2xl bg-base-100 p-8  shadow-xl'>
                   <div className='flex w-full items-center justify-between'>
                     <div className='flex flex-col items-start'>
                       <p className='font-bold'>Study Hall</p>
@@ -161,7 +161,7 @@ export default class HomePage extends React.Component<
                   </div>
                 </div>
 
-                <div className='mt-12 w-full rounded-2xl p-8 shadow-xl'>
+                <div className='mt-12 w-full rounded-2xl bg-base-100 p-8  shadow-xl'>
                   <div className='flex w-full items-center justify-between'>
                     <div className='flex flex-col items-start'>
                       <p className='font-bold'>Cyber Center</p>
@@ -210,7 +210,7 @@ export default class HomePage extends React.Component<
                   </div>
                 </div>
 
-                <div className='mt-12 w-full rounded-2xl p-8 shadow-xl'>
+                <div className='mt-12 w-full rounded-2xl bg-base-100 p-8  shadow-xl'>
                   <div className='flex w-full items-center justify-between'>
                     <div className='flex flex-col items-start'>
                       <p className='font-bold'>Hallman Music Center</p>
@@ -259,7 +259,7 @@ export default class HomePage extends React.Component<
                   </div>
                 </div>
               </div>
-              <footer className='mt-24 mb-2 text-center text-sm text-gray-700'>
+              <footer className='mt-24 pb-2 text-center text-sm text-gray-700'>
                 © {new Date().getFullYear()} Brett Meadows
                 <br />
                 Made for Buildergroop Hackathon Season 1
