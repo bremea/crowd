@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as Icons from 'react-feather';
 
+import { udata } from '@/lib/typings';
+
 export default class Bubbul extends React.Component<{ data: udata }, unknown> {
   render() {
     return (
@@ -50,12 +52,4 @@ function getPPData(percent: number) {
   else if (percent >= 33)
     return { color: 'text-warning', text: 'Somewhat Busy' };
   else return { color: 'text-success', text: 'Not Very Busy' };
-}
-
-interface udata {
-  current: number;
-  max: number;
-  maxHour: number;
-  hourly: Array<number>;
-  percent: number;
 }

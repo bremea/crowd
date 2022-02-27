@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { udata } from '@/lib/typings';
+
 import Bubbul from '@/components/Bubbul';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -80,12 +82,4 @@ export default class HomePage extends React.Component<
       );
     }
   }
-}
-
-interface udata {
-  current: number;
-  max: number;
-  maxHour: number;
-  hourly: Array<number>;
-  percent: number;
 }
