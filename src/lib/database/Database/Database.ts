@@ -1,15 +1,18 @@
 import { createPool, Pool, PoolConfig } from 'mariadb';
 
 import { LocManager } from './LocManager';
+import { PhoneManager } from './PhoneManager';
 
 export class Database {
   private readonly _pool: Pool;
 
   public readonly locations: LocManager;
+  public readonly phones: PhoneManager;
 
   constructor(options: PoolConfig) {
     this._pool = createPool(options);
     this.locations = new LocManager(this);
+    this.phones = new PhoneManager(this);
   }
 
   public async query<

@@ -5,12 +5,12 @@ import { udata } from '@/lib/typings';
 
 export default class Bubbul extends React.Component<
   { data: udata },
-  { showNotifs: number; height: number }
+  { showNotifs: number; height: number; phoneNum: string }
 > {
   constructor(props: { data: udata }) {
     super(props);
 
-    this.state = { showNotifs: 0, height: 0 };
+    this.state = { showNotifs: 0, height: 0, phoneNum: '' };
   }
 
   render() {
@@ -18,7 +18,7 @@ export default class Bubbul extends React.Component<
       return (
         <div className='relative mt-12 flex w-full flex-col items-center justify-center rounded-2xl bg-base-100 p-8 shadow-xl'>
           <p>
-            Get notified for{' '}
+            Enter your phone number to get notified for{' '}
             <span className='font-bold'>{this.props.data.name}</span>
           </p>
           <p className='text-sm'>
@@ -29,18 +29,20 @@ export default class Bubbul extends React.Component<
               <input
                 type='tel'
                 placeholder='Phone Number'
+                defaultValue='+1'
                 className='input-bordered input'
                 id={`phone-${this.props.data.id}`}
               />
               <a
                 className='btn input-bordered btn-square bg-base-200'
-                onClick={() => {
+                onClick={async () => {
                   const val = (
                     document.getElementById(
                       `phone-${this.props.data.id}`
                     ) as HTMLInputElement
                   ).value;
-                  fetch('/api/phone', {
+                  this.setState({ phoneNum: val });
+                  await fetch('/api/phone', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -48,12 +50,23 @@ export default class Bubbul extends React.Component<
                       phoneNum: val,
                     }),
                   });
+                  this.setState({ showNotifs: 2 });
                 }}
               >
                 <Icons.ArrowRight />
               </a>
             </div>
           </div>
+        </div>
+      );
+    } else if (this.state.showNotifs === 2) {
+      return (
+        <div className='relative mt-12 flex w-full flex-col items-center justify-center rounded-2xl bg-base-100 p-8 shadow-xl'>
+          <p>
+            You&apos;re now getting notifs for{' '}
+            <span className='font-bold'>{this.props.data.name}</span>
+          </p>
+          <p className='text-sm'>Reply at any time with STOP to opt-out.</p>
         </div>
       );
     } else {
