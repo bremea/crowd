@@ -14,9 +14,7 @@ export class LocManager {
     columns: T[]
   ): Promise<Query<SelectFrom<LocationDB, T>, 1>> {
     return await this._db.query<Query<SelectFrom<LocationDB, T>, 1>>(
-      `SELECT ${columns.join(
-        ', '
-      )} FROM locations WHERE id=? AND modul=? LIMIT 1`,
+      `SELECT ${columns.join(', ')} FROM locations WHERE id=? LIMIT 1`,
       [id]
     );
   }
