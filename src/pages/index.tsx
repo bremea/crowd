@@ -1,11 +1,11 @@
 import * as React from 'react';
+import * as Icons from 'react-feather';
 
 import { udata } from '@/lib/typings';
 
 import Bubbul from '@/components/Bubbul';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
-
 export default class HomePage extends React.Component<
   unknown,
   {
@@ -56,14 +56,28 @@ export default class HomePage extends React.Component<
       return (
         <Layout>
           <Seo />
-          <main className='w-full bg-base-200'>
+          <main className='w-full bg-top'>
             <section className='w-full'>
               <div className='layout flex min-h-screen w-full flex-col items-center justify-center text-center'>
-                <h1 className='mt-4 text-primary'>Crowd</h1>
-                <p>
-                  Check real-time crowd levels on campus with Crowd. Know before
-                  you go.
+                <h1 className='mt-24 text-xl font-black text-white'>Crowd @</h1>
+                <h1 className='mb-7 text-5xl font-black text-white'>
+                  Bremea University
+                </h1>
+                <p className='mb-12 text-white'>
+                  Check real-time crowd levels on campus with Crowd.
+                  <br />
+                  Know before you go.
                 </p>
+
+                <div className='mt-12 w-full cursor-pointer rounded-2xl bg-base-100 p-8 shadow-xl'>
+                  <div className='flex flex-wrap justify-between'>
+                    <div className='flex'>
+                      <Icons.AlertCircle className='mr-4' />
+                      <p>Important COVID Updates</p>
+                    </div>
+                    <Icons.ArrowRight />
+                  </div>
+                </div>
 
                 <Bubbul data={this.state.data?.library} />
                 <Bubbul data={this.state.data?.study} />
@@ -71,7 +85,7 @@ export default class HomePage extends React.Component<
                 <Bubbul data={this.state.data?.music} />
               </div>
 
-              <footer className='mt-24 pb-2 text-center text-sm text-gray-700'>
+              <footer className='mt-24 pb-2 text-center text-sm text-white opacity-70'>
                 © {new Date().getFullYear()} Brett Meadows
                 <br />
                 Made for Buildergroop Hackathon Season 1

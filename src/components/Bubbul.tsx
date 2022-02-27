@@ -4,10 +4,10 @@ import * as Icons from 'react-feather';
 import { udata } from '@/lib/typings';
 
 export default class Bubbul extends React.Component<
-  { data: udata },
+  { data: udata; starred: boolean },
   { showNotifs: number; height: number; phoneNum: string }
 > {
-  constructor(props: { data: udata }) {
+  constructor(props: { data: udata; starred: boolean }) {
     super(props);
 
     this.state = { showNotifs: 0, height: 0, phoneNum: '' };
@@ -81,6 +81,9 @@ export default class Bubbul extends React.Component<
                   onClick={() => this.setState({ showNotifs: 1 })}
                 >
                   <Icons.Bell className='h-4 w-4' />
+                </a>
+                <a className='btn btn-ghost btn-square btn-xs ml-1 opacity-70'>
+                  <Icons.Star className='h-4 w-4' />
                 </a>
               </div>
               <p
