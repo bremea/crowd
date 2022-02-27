@@ -16,6 +16,7 @@ export default class HomePage extends React.Component<
       study: udata;
       cyber: udata;
       music: udata;
+      gym: udata;
     } | null;
     starred: null | string;
   }
