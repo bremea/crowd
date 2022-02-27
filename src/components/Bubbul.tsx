@@ -1,13 +1,18 @@
 import * as React from 'react';
 import * as Icons from 'react-feather';
+import Cookies from 'universal-cookie';
 
 import { udata } from '@/lib/typings';
 
 export default class Bubbul extends React.Component<
-  { data: udata; starred: boolean },
+  { data: udata; starred: boolean; updateStarred: (id: string) => void },
   { showNotifs: number; height: number; phoneNum: string }
 > {
-  constructor(props: { data: udata; starred: boolean }) {
+  constructor(props: {
+    data: udata;
+    starred: boolean;
+    updateStarred: () => void;
+  }) {
     super(props);
 
     this.state = { showNotifs: 0, height: 0, phoneNum: '' };
@@ -83,7 +88,16 @@ export default class Bubbul extends React.Component<
                   <Icons.Bell className='h-4 w-4' />
                 </a>
                 <a className='btn btn-ghost btn-square btn-xs ml-1 opacity-70'>
-                  <Icons.Star className='h-4 w-4' />
+                  <Icons.Star
+                    className={`h-4 w-4 ${
+                      this.props.starred ? 'text-warning' : ''
+                    }`}
+                    onClick={() => {
+                      const cookies = new Cookies();
+                      cookies.set('starred', this.props.data.id, { path: '/' });
+                      this.props.updateStarred(this.props.data.id);
+                    }}
+                  />
                 </a>
               </div>
               <p

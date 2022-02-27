@@ -37,6 +37,7 @@
     "styled-components": "^5.3.3",
     "tailwind-merge": "^1.2.0",
     "twilio": "^3.75.0",
+    "universal-cookie": "^4.0.4",
     "validate-phone-number-node-js": "^0.0.1"
   },
   "devDependencies": {

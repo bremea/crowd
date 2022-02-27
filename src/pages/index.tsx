@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as Icons from 'react-feather';
+import Cookies from 'universal-cookie';
 
 import { udata } from '@/lib/typings';
 
@@ -16,15 +17,23 @@ export default class HomePage extends React.Component<
       cyber: udata;
       music: udata;
     } | null;
+    starred: null | string;
   }
 > {
   constructor(props: unknown) {
     super(props);
 
+    this.updateStarred = this.updateStarred.bind(this);
+
     this.state = {
       loading: true,
       data: null,
+      starred: null,
     };
+  }
+
+  updateStarred(id: string) {
+    this.setState({ starred: id });
   }
 
   async componentDidMount() {
@@ -53,6 +62,17 @@ export default class HomePage extends React.Component<
         </Layout>
       );
     } else {
+      const cookies = new Cookies();
+      let keys = Object.keys(
+        this.state.data as {
+          [key: string]: udata;
+        }
+      );
+      const s = this.state.starred ?? cookies.get('starred');
+      if (keys.includes(s)) {
+        keys = keys.filter((item) => item !== s);
+        keys.unshift(s);
+      }
       return (
         <Layout>
           <Seo />
@@ -79,10 +99,20 @@ export default class HomePage extends React.Component<
                   </div>
                 </div>
 
-                <Bubbul data={this.state.data?.library} />
-                <Bubbul data={this.state.data?.study} />
-                <Bubbul data={this.state.data?.cyber} />
-                <Bubbul data={this.state.data?.music} />
+                {keys.map((keyName, i) => (
+                  <Bubbul
+                    key={i}
+                    data={
+                      (
+                        this.state.data as {
+                          [key: string]: udata;
+                        }
+                      )[keyName]
+                    }
+                    starred={cookies.get('starred') === keyName}
+                    updateStarred={this.updateStarred}
+                  />
+                ))}
               </div>
 
               <footer className='mt-24 pb-2 text-center text-sm text-white opacity-70'>
