@@ -33,7 +33,7 @@ export class LocManager {
     values: UpdateValues<T, LocationDB>
   ): Promise<void> {
     return await this._db.query<void>(
-      `UPDATE moduls SET ${columns
+      `UPDATE locations SET ${columns
         .map((e) => `${e}=?`)
         .join(', ')} WHERE id=? LIMIT 1`,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
