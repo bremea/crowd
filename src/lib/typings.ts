@@ -5,4 +5,5 @@ export interface udata {
   hourly: Array<number>;
   percent: number;
   name: string;
+  id: string;
 }

@@ -43,6 +43,7 @@ export default async function packet(
     percent: Math.floor((rrd[rrd.length - 1] / averageMax) * 100),
     maxHour: maxHour,
     hourly: maxesHour,
+    id: req.query.id,
     name: (names as { [key: string]: string })[req.query.id as string],
   });
 }
