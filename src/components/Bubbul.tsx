@@ -143,12 +143,16 @@ export default class Bubbul extends React.Component<
                 <p className='ml-2'>
                   Open from{' '}
                   <span className='text-success'>
-                    {this.props.data?.hours[0]}
+                    {(this.props.data?.hours[0] as number) > 12
+                      ? this.props.data?.hours[0] - 12
+                      : this.props.data?.hours[0]}
                     {(this.props.data?.hours[0] as number) > 12 ? 'pm' : 'am'}
                   </span>{' '}
                   to{' '}
                   <span className='text-success'>
-                    {this.props.data?.hours[1]}
+                    {(this.props.data?.hours[1] as number) > 12
+                      ? this.props.data?.hours[1] - 12
+                      : this.props.data?.hours[1]}
                     {(this.props.data?.hours[1] as number) > 12 ? 'pm' : 'am'}
                   </span>
                 </p>

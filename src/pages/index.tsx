@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as Icons from 'react-feather';
 import Cookies from 'universal-cookie';
 
 import { udata } from '@/lib/typings';
@@ -13,10 +12,8 @@ export default class HomePage extends React.Component<
     loading: boolean;
     data: {
       library: udata;
-      study: udata;
-      cyber: udata;
-      music: udata;
-      gym: udata;
+      dining: udata;
+      commons: udata;
     } | null;
     starred: null | string;
   }
@@ -39,18 +36,14 @@ export default class HomePage extends React.Component<
 
   async componentDidMount() {
     const library = await (await fetch('/api/level/library')).json();
-    const study = await (await fetch('/api/level/study')).json();
-    const cyber = await (await fetch('/api/level/cyber')).json();
-    const music = await (await fetch('/api/level/music')).json();
-    const gym = await (await fetch('/api/level/gym')).json();
+    const commons = await (await fetch('/api/level/commons')).json();
+    const dining = await (await fetch('/api/level/dining')).json();
     this.setState({
       loading: false,
       data: {
         library: library,
-        study: study,
-        cyber: cyber,
-        music: music,
-        gym: gym,
+        dining: dining,
+        commons: commons,
       },
     });
   }
@@ -89,7 +82,7 @@ export default class HomePage extends React.Component<
               <div className='layout flex min-h-screen w-full flex-col items-center justify-center text-center'>
                 <h1 className='mt-24 text-xl font-black text-white'>Crowd @</h1>
                 <h1 className='mb-7 text-5xl font-black text-white'>
-                  Bremea University
+                  Calvert Hall
                 </h1>
                 <p className='mb-12 text-white'>
                   Check real-time crowd levels on campus with Crowd.
@@ -97,7 +90,7 @@ export default class HomePage extends React.Component<
                   Know before you go.
                 </p>
 
-                <div className='mt-12 w-full cursor-pointer rounded-2xl bg-base-100 p-8 shadow-xl'>
+                {/*<div className='mt-12 w-full cursor-pointer rounded-2xl bg-base-100 p-8 shadow-xl'>
                   <div className='flex flex-wrap justify-between'>
                     <div className='flex'>
                       <Icons.AlertCircle className='mr-4' />
@@ -105,7 +98,7 @@ export default class HomePage extends React.Component<
                     </div>
                     <Icons.ArrowRight />
                   </div>
-                </div>
+								</div>*/}
 
                 {keys.map((keyName, i) => (
                   <Bubbul
@@ -124,9 +117,7 @@ export default class HomePage extends React.Component<
               </div>
 
               <footer className='mt-24 pb-2 text-center text-sm text-white opacity-70'>
-                © {new Date().getFullYear()} Brett Meadows
-                <br />
-                Made for Buildergroop Hackathon Season 1
+                © {new Date().getFullYear()} Brett Meadows &apos;24
               </footer>
             </section>
           </main>

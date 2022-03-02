@@ -53,17 +53,13 @@ export default async function packet(
 }
 
 const names = {
+  commons: 'Noppinger Commons',
   library: 'Campus Library',
-  study: 'Study Hall',
-  cyber: 'Cyber Center',
-  music: 'Music Room',
-  gym: 'Main Gym',
+  dining: 'Dining Hall',
 };
 
 const hours = {
-  library: [7, 11],
-  study: [9, 5],
-  cyber: [9, 5],
-  music: [7, 9],
-  gym: [6, 9],
+  library: [7, 15],
+  commons: [7, 17],
+  dining: [7, 14],
 };

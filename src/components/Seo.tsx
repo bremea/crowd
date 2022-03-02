@@ -4,12 +4,12 @@ import { useRouter } from 'next/router';
 import { openGraph } from '@/lib/helper';
 
 const defaultMeta = {
-  title: 'Crowd @ Bremea University',
-  siteName: 'Crowd @ Bremea University',
+  title: 'Crowd @ Calvert Hall',
+  siteName: 'Crowd @ Calvert Hall',
   description:
     'Check real-time crowd levels on campus with Crowd. Know before you go.',
   /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
-  url: 'https://tsnext-tw.thcl.dev',
+  url: 'https://crowd.calverthall.com',
   type: 'website',
   robots: 'follow, index',
   /** No need to be filled, will be populated with openGraph function */
